@@ -19,11 +19,11 @@ class authenticate {
         res.status(400).json({ msg: "senha incorreta" });
         return;
       }
-      const token = jwt.sign({ email: email, nome: user.nome }, "teste123", {
+      const token = jwt.sign({id:user.id, email: email, nome: user.nome }, "teste123", {
         expiresIn: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 4,
       });
 
-      res.status(200).json({ email: email, nome: user.nome, token: token });
+      res.status(200).json({ id:user.id,email: email, nome: user.nome, token: token });
     } catch (error) {
       res.status(400).json(error);
     }

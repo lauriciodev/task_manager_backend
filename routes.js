@@ -16,6 +16,7 @@ router.post("/task", auth, taskController.store);
 router.get("/task",auth, taskController.index);
 router.put("/task/:id", auth, taskController.update);
 router.delete("/task/:id", auth, taskController.delete);
+router.get("/task/:id", auth, taskController.tasksUser);
 
 //rotas de autenticação
 router.post("/login", authenticate.login);

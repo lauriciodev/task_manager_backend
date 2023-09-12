@@ -5,7 +5,7 @@ const connection = require("./src/database/connection");
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "http://mytasksmanager.vercel.app", // A origem que você deseja permitir
+	origin: "http://localhost:5173", // A origem que você deseja permitir
 };
 
 app.use(cors(corsOptions));

@@ -10,6 +10,22 @@ class taskController {
     }
   }
 
+
+  async tasksUser(req,res){
+try{
+	const {id} = req.params;
+
+	const tasksByUser = await taskModel.findAll({where:{
+		userId:id
+	}
+	});
+	res.status(200).json(tasksByUser)
+
+}catch(error){
+res.status(404).json({msg:"usuario não encontrado"});
+}
+  }
+
   async index(req, res) {
     try {
       const tasks = await taskModel.findAll({ order: [["createdAt", "DESC"]] });
