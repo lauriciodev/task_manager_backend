@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 
 function auth(req, res, next) {
+  
   const authHeader = req.headers.authorization;
   const header = authHeader.split(" ");
   const [, token] = header;
 
-  try {
+	try{
+  
     const decoded = jwt.verify(token, "teste123");
     if (!decoded) {
       res.json({ msg: "não autorizado" });

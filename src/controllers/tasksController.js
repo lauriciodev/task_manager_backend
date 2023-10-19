@@ -10,20 +10,35 @@ class taskController {
     }
   }
 
+  async tasksUser(req, res) {
+    try {
+      const { id } = req.params;
 
-  async tasksUser(req,res){
-try{
-	const {id} = req.params;
+      const tasksByUser = await taskModel.findAll({
+        where: {
+          userId: id,
+        },
+        order: [["createdAt", "DESC"]],
+      });
+      res.status(200).json(tasksByUser);
+    } catch (error) {
+      res.status(404).json({ msg: "usuario não encontrado" });
+    }
+  }
 
-	const tasksByUser = await taskModel.findAll({where:{
-		userId:id
-	}
-	});
-	res.status(200).json(tasksByUser)
+  async taskById(req, res) {
+    const { id } = req.params;
+    try {
+      const taskById = await taskModel.findAll({
+        where: {
+          id: id,
+        },
+      });
 
-}catch(error){
-res.status(404).json({msg:"usuario não encontrado"});
-}
+      res.status(200).json(taskById);
+    } catch (error) {
+      res.status(404).json({ msg: "tarefa não encontrada" });
+    }
   }
 
   async index(req, res) {
